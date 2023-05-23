@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/dylanbatar/simple-login-system/internal/infra/factory/apiFactory"
+	"github.com/dylanbatar/simple-login-system/internal/infra/factory/api"
 	"log"
 )
 
 func main() {
-	server, err := apiFactory.NewApiFactory("echo")
+	server, err := api.NewApiFactory("echo")
 
 	if err != nil {
 		log.Fatalln(err)

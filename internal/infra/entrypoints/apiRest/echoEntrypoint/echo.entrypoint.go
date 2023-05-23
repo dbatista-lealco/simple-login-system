@@ -1,7 +1,10 @@
 package echoEntrypoint
 
 import (
+	hasher "github.com/dylanbatar/simple-login-system/internal/infra/adapters/hasher"
 	"github.com/dylanbatar/simple-login-system/internal/infra/entrypoints/apiRest/echoEntrypoint/handlers"
+	"github.com/dylanbatar/simple-login-system/internal/infra/factory/repository"
+	validator "github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 	"log"
 )
@@ -13,7 +16,10 @@ type EchoApiEntryPoint struct {
 
 func NewEchoApiRest() *EchoApiEntryPoint {
 	e := echo.New()
-	handlerInstace := handlers.NewHandler()
+	validatorInstance := validator.New()
+	hasherInstance := hasher.NewHasherAdapter()
+	repositoryInstance, _ := repository.NewRepositoryFactory("mongo")
+	handlerInstace := handlers.NewHandler(validatorInstance, hasherInstance, repositoryInstance)
 	return &EchoApiEntryPoint{
 		echoInstance: e,
 		handler:      *handlerInstace,
