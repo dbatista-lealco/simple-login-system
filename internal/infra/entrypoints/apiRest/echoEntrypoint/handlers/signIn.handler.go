@@ -32,10 +32,8 @@ func (handler *Handler) SignIn(c echo.Context) error {
 		}
 	}
 
-	c.JSON(http.StatusOK, map[string]string{
+	return c.JSON(http.StatusOK, map[string]string{
 		"message": "Login Successfully",
 		"token":   string(token),
 	})
-
-	return nil
 }
