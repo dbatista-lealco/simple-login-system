@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/dylanbatar/simple-login-system/internal/domain"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -27,4 +28,18 @@ func (adapter *MongoAdapter) Save(user domain.User) error {
 	fmt.Println(result)
 
 	return nil
+}
+
+func (adapter *MongoAdapter) FindByEmail(email string) (domain.User, error) {
+	var result domain.User
+
+	err := adapter.conn.Collection("users").FindOne(context.TODO(), bson.M{
+		"email": email,
+	}).Decode(&result)
+
+	if err != nil {
+		return domain.User{}, fmt.Errorf("error searching user by email: %s", err.Error())
+	}
+
+	return result, nil
 }

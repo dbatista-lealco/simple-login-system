@@ -1,15 +1,20 @@
 package domain
 
-import "time"
+import (
+	"github.com/dylanbatar/simple-login-system/internal/domain/utils"
+	"time"
+)
 
 type User struct {
-	Name         string
-	Email        string
-	Password     string
-	Image        string
-	Role         string
-	Active       bool
-	LastActivity []LastActivity
+	Name             string
+	Email            string
+	Password         string
+	Image            string
+	Role             string
+	Active           bool
+	LastActivity     []LastActivity
+	VerifyCationCode string
+	IsVerify         bool
 }
 
 type LastActivity struct {
@@ -20,12 +25,14 @@ type LastActivity struct {
 
 func NewUser(name, email, password string) (*User, error) {
 	return &User{
-		Name:         name,
-		Email:        email,
-		Password:     password,
-		Image:        "",
-		Role:         "user",
-		Active:       true,
-		LastActivity: []LastActivity{},
+		Name:             name,
+		Email:            email,
+		Password:         password,
+		Image:            "",
+		Role:             "user",
+		Active:           true,
+		LastActivity:     []LastActivity{},
+		VerifyCationCode: utils.GenerateVerifyCode(5),
+		IsVerify:         false,
 	}, nil
 }

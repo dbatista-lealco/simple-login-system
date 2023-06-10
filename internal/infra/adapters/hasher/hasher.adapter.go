@@ -22,5 +22,11 @@ func (adapter HasherAdapter) Hash(password string) (string, error) {
 }
 
 func (adapter HasherAdapter) Compare(hashPassoword, password string) (bool, error) {
-	panic("")
+	err := bcrypt.CompareHashAndPassword([]byte(hashPassoword), []byte(password))
+
+	if err != nil {
+		return false, err
+	}
+
+	return true, nil
 }
