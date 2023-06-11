@@ -40,4 +40,5 @@ func (api *EchoApiEntryPoint) setupRoutes() {
 	api.echoInstance.POST("/signUp", api.handler.SignUp)
 	api.echoInstance.POST("/signUp", api.handler.SignUp)
 	api.echoInstance.POST("/password/reset", api.handler.ResetPassword)
+	api.echoInstance.POST("/otp/generate", api.handler.GenerateOtp)
 }
