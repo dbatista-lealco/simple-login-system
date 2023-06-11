@@ -6,15 +6,15 @@ import (
 )
 
 type User struct {
-	Name             string
-	Email            string
-	Password         string
-	Image            string
-	Role             string
-	Active           bool
-	LastActivity     []LastActivity
-	VerifyCationCode string
-	IsVerify         bool
+	Name             string         `bson:"name"`
+	Email            string         `bson:"email"`
+	Password         string         `bson:"password"`
+	Image            string         `bson:"image"`
+	Role             string         `bson:"role"`
+	Active           bool           `bson:"active"`
+	LastActivity     []LastActivity `bson:"lastActivity"`
+	VerifyCationCode string         `bson:"verifyCationCode"`
+	IsVerify         bool           `bson:"isVerify"`
 }
 
 type LastActivity struct {
