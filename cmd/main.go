@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	fmt.Println("test commit")
+	fmt.Println("test commit 2")
 
 	// TODO: Test reset password usecase
 	server, err := api.NewApiFactory("echo")
