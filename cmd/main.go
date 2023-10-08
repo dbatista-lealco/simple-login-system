@@ -1,11 +1,15 @@
 package main
 
 import (
-	"github.com/dylanbatar/simple-login-system/internal/infra/factory/api"
+	"fmt"
 	"log"
+
+	"github.com/dylanbatar/simple-login-system/internal/infra/factory/api"
 )
 
 func main() {
+	fmt.Println("test commit")
+
 	// TODO: Test reset password usecase
 	server, err := api.NewApiFactory("echo")
 
